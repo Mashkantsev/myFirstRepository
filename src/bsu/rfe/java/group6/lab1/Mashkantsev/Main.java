@@ -1,6 +1,7 @@
 package bsu.rfe.java.group6.lab1.Mashkantsev;
 
-
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,9 +32,32 @@ public class Main {
                     i--;
             }
             }
-
             i++;
         }
+
+        if(sort == true){
+            Arrays.sort(breakfast, new Comparator<Food>() {
+                @Override
+                public int compare(Food o1, Food o2) {
+                    if (o1 == null) {
+                        return 1;
+                    }
+                    else if (o2 == null) {
+                        return -1;
+                    }
+                    else if (o1 instanceof Lemonade && o2 instanceof Lemonade) {
+                        return -(((Lemonade) o1).gettaste().compareTo(((Lemonade) o2).gettaste()));
+                    }
+                    else if (o1 instanceof Apple && o2 instanceof Apple) {
+                        return -(((Apple) o1).getSize().compareTo(((Apple) o2).getSize()));
+                    }
+                    else{
+                        return 0;
+                    }
+                }
+            });
+        }
+
         System.out.println("Breakfast");
 
         for(int j =0; j<breakfast.length; j++) {
